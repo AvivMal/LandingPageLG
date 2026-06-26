@@ -194,6 +194,13 @@
 
     <!-- ============ MEET LINGO ============ -->
     <section id="lingo" style="position:relative;padding:70px 24px 56px;max-width:1180px;margin:0 auto">
+      <!-- centered header ABOVE the two columns -->
+      <div data-reveal style="text-align:center;max-width:760px;margin:0 auto clamp(34px,5vh,56px)">
+        <div style="display:inline-flex;align-items:center;gap:9px;padding:8px 15px;border-radius:100px;border:1px solid rgba(168,85,247,.35);background:rgba(168,85,247,.1);font-size:13px;font-weight:600;color:#D8C9FF;margin-bottom:18px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#A78BFA;box-shadow:0 0 10px #A78BFA;animation:pulse 2.4s ease-in-out infinite"></span>{{ lingoKicker }}
+        </div>
+        <h2 style="font-family:var(--fd);font-weight:800;font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-.03em;text-wrap:balance">{{ lingoTitle }}</h2>
+      </div>
       <div data-lingo-grid style="display:grid;grid-template-columns:.96fr 1.04fr;gap:clamp(28px,5vw,72px);align-items:center">
         <!-- visual (lingo-teach lives ONLY here) -->
         <div data-reveal style="position:relative;display:flex;align-items:center;justify-content:center;min-height:clamp(320px,42vw,440px)">
@@ -210,13 +217,9 @@
             <span style="width:7px;height:7px;border-radius:50%;background:#D946EF;box-shadow:0 0 8px #D946EF"></span>{{ lingoChip3 }}
           </div>
         </div>
-        <!-- copy -->
+        <!-- copy (body only; heading moved above) -->
         <div data-lingo-copy>
-          <div data-reveal style="display:inline-flex;align-items:center;gap:9px;padding:8px 15px;border-radius:100px;border:1px solid rgba(168,85,247,.35);background:rgba(168,85,247,.1);font-size:13px;font-weight:600;color:#D8C9FF;margin-bottom:20px">
-            <span style="width:8px;height:8px;border-radius:50%;background:#A78BFA;box-shadow:0 0 10px #A78BFA;animation:pulse 2.4s ease-in-out infinite"></span>{{ lingoKicker }}
-          </div>
-          <h2 data-reveal style="font-family:var(--fd);font-weight:800;font-size:clamp(30px,4.4vw,52px);line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;text-wrap:balance">{{ lingoTitle }}</h2>
-          <p data-reveal style="font-size:clamp(16px,1.6vw,18.5px);line-height:1.7;color:rgba(236,234,246,.72);max-width:560px;text-wrap:pretty">{{ lingoBody }}</p>
+          <p data-reveal style="font-size:clamp(16px,1.65vw,19px);line-height:1.75;color:rgba(236,234,246,.74);max-width:560px;text-wrap:pretty">{{ lingoBody }}</p>
         </div>
       </div>
     </section>
@@ -420,11 +423,11 @@
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900},&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;he&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'he'&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900},&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;he&quot;],&quot;default&quot;:&quot;he&quot;,&quot;tsType&quot;:&quot;'en'|'he'&quot;},&quot;particles&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;reduceMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
 class Component extends DCLogic {
   constructor(props){
     super(props);
-    this.state = { lang: (props && props.defaultLang) || 'en', menuOpen:false, openFaq:0, switching:false };
+    this.state = { lang: (props && props.defaultLang) || 'he', menuOpen:false, openFaq:0, switching:false };
   }
 
   ICONS(){
@@ -514,7 +517,7 @@ class Component extends DCLogic {
       footMade:'Made with Lingo for students everywhere'
     };
     const HE = {
-      navCta:'\u05dc\u05d4\u05d5\u05e8\u05d3\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4', getOn:'\u05d4\u05d5\u05e8\u05d3\u05d4 \u05de\u05d4',
+      navCta:'\u05dc\u05d4\u05d5\u05e8\u05d3\u05ea \u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4', getOn:'\u05d4\u05d5\u05e8\u05d9\u05d3\u05d5 \u05e2\u05db\u05e9\u05d9\u05d5',
       navLinks:[{label:'\u05d0\u05d9\u05da \u05d6\u05d4 \u05e2\u05d5\u05d1\u05d3',href:'#how'},{label:'\u05dc\u05de\u05d9 \u05d6\u05d4 \u05de\u05ea\u05d0\u05d9\u05dd',href:'#who'},{label:'\u05d9\u05ea\u05e8\u05d5\u05e0\u05d5\u05ea',href:'#benefits'},{label:'\u05e9\u05d0\u05dc\u05d5\u05ea \u05e0\u05e4\u05d5\u05e6\u05d5\u05ea',href:'#faq'},{label:'\u05e6\u05d5\u05e8 \u05e7\u05e9\u05e8',href:'#contact'}],
       heroBadge:'\u05d4\u05de\u05d3\u05e8\u05d9\u05da \u05d4\u05d7\u05db\u05dd \u05e9\u05dc\u05da \u05dc\u05dc\u05de\u05d9\u05d3\u05d4',
       heroT1:'\u05d4\u05d7\u05d5\u05de\u05e8 \u05e9\u05dc\u05da. \u05d4\u05e7\u05d5\u05e8\u05e1 \u05e9\u05dc\u05da.', heroT2:'\u05de\u05d5\u05db\u05df \u05dc\u05dc\u05de\u05d9\u05d3\u05d4 \u05ea\u05d5\u05da \u05d3\u05e7\u05d5\u05ea.',
@@ -812,7 +815,7 @@ class Component extends DCLogic {
       ...D,
       dir: rtl ? 'rtl' : 'ltr',
       lang,
-      otherLang: lang==='en' ? '\u05e2\u05d1\u05e8\u05d9\u05ea' : 'English',
+      otherLang: lang==='en' ? 'English' : '\u05e2\u05d1\u05e8\u05d9\u05ea', // label shows the CURRENT language, not the switch target
       reduceFlag: (this.props && this.props.reduceMotion) ? 'true' : null,
       contentOpacity: this.state.switching ? 0 : 1,
       menuOpen: this.state.menuOpen,
