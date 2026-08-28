@@ -32,6 +32,37 @@
   @keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes ringpulse{0%{box-shadow:0 0 0 0 rgba(168,85,247,.5)}70%{box-shadow:0 0 0 22px rgba(168,85,247,0)}100%{box-shadow:0 0 0 0 rgba(168,85,247,0)}}
+  /* ---- WEB CTA: brand button with cursor-tracking spotlight + magnetic tilt ---- */
+  .lg-web{position:relative;display:inline-flex;align-items:center;gap:12px;padding:14px 22px;border-radius:16px;color:#fff;isolation:isolate;overflow:hidden;background:linear-gradient(140deg,rgba(124,58,237,.28),rgba(91,141,239,.14) 55%,rgba(217,70,243,.22));border:1px solid rgba(168,85,247,.4);box-shadow:0 12px 32px -16px rgba(139,92,246,.85);transform:perspective(720px) translate3d(var(--tx,0px),var(--ty,0px),0) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) scale(var(--sc,1));transition:transform .5s cubic-bezier(.16,.8,.3,1),border-color .35s,box-shadow .45s;will-change:transform}
+  .lg-web:hover,.lg-web:focus-visible{--sc:1.035;border-color:rgba(232,121,249,.75);box-shadow:0 24px 60px -18px rgba(168,85,247,.95),0 0 0 1px rgba(232,121,249,.28);transition:transform .14s cubic-bezier(.16,.8,.3,1),border-color .35s,box-shadow .45s}
+  .lg-web::before{content:'';position:absolute;inset:0;z-index:-2;border-radius:inherit;background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%),rgba(232,121,249,.6),rgba(139,92,246,.3) 42%,transparent 70%);opacity:0;transition:opacity .35s}
+  .lg-web:hover::before,.lg-web:focus-visible::before{opacity:1}
+  .lg-web::after{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;padding:1.2px;background:conic-gradient(from var(--ang,0deg),transparent 0deg,#7CB0FF 55deg,#A78BFA 130deg,#E879F9 205deg,transparent 290deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;transition:opacity .4s}
+  .lg-web:hover::after,.lg-web:focus-visible::after{opacity:1}
+  .lg-web__orb{position:absolute;top:0;left:0;width:150px;height:150px;margin:-75px 0 0 -75px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(232,121,249,.32) 42%,transparent 68%);filter:blur(10px);opacity:0;transform:translate3d(var(--mpx,0px),var(--mpy,0px),0);transition:opacity .3s,transform .16s cubic-bezier(.16,.8,.3,1)}
+  .lg-web:hover .lg-web__orb{opacity:.85}
+  .lg-web__ico{flex:none;width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;background:linear-gradient(140deg,#5B8DEF,#8B5CF6,#D946EF);box-shadow:0 8px 20px -8px rgba(139,92,246,.9);transition:transform .45s cubic-bezier(.16,.8,.3,1)}
+  .lg-web:hover .lg-web__ico{transform:rotate(-14deg) scale(1.07)}
+  .lg-web__txt{display:flex;flex-direction:column;line-height:1.18;text-align:start}
+  .lg-web__t1{font-size:16px;font-weight:700;letter-spacing:-.01em}
+  .lg-web__t2{font-size:11.5px;font-weight:500;opacity:.7;direction:ltr;unicode-bidi:isolate}
+  .lg-web__arw{flex:none;opacity:.7;transition:transform .35s cubic-bezier(.16,.8,.3,1),opacity .3s}
+  .lg-web:hover .lg-web__arw{opacity:1;transform:translate(3px,-3px)}
+  .lg-web--sm{padding:9px 14px;border-radius:11px;gap:7px;font-size:13px;font-weight:600}
+  .lg-web--sm .lg-web__orb{width:110px;height:110px;margin:-55px 0 0 -55px}
+  .lg-web--block{display:flex;justify-content:center;text-align:center}
+  [data-reduce] .lg-web{transform:none!important}
+
+  /* ---- disabled "coming soon" store button ---- */
+  .lg-soon{position:relative;display:inline-flex;align-items:center;gap:11px;padding:14px 22px;border-radius:15px;color:rgba(236,234,246,.8);border:1px dashed rgba(255,255,255,.22);background:rgba(255,255,255,.03);cursor:not-allowed;user-select:none;-webkit-user-select:none}
+  .lg-soon svg{opacity:.5;filter:grayscale(.55)}
+  .lg-soon__lbl{display:flex;flex-direction:column;line-height:1.15;text-align:start}
+  .lg-soon__top{font-size:11px;font-weight:700;letter-spacing:.04em;color:#F0C7FB;opacity:.95}
+  .lg-soon__main{font-size:16px;font-weight:700}
+  .lg-soon--card{border-color:rgba(255,255,255,.32);background:rgba(255,255,255,.07);color:rgba(255,255,255,.82)}
+  .lg-soon--card .lg-soon__top{color:#F6DCFF}
+  .lg-soon--sm{padding:9px 14px;border-radius:11px;gap:7px;font-size:13px;font-weight:600}
+  .lg-soon__pill{padding:3px 8px;border-radius:100px;font-size:10px;font-weight:700;letter-spacing:.06em;color:#F0C7FB;background:rgba(217,70,243,.16);border:1px solid rgba(217,70,243,.34);white-space:nowrap}
   a{text-decoration:none;color:inherit}
   button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
   input,textarea{font-family:inherit}
@@ -93,6 +124,12 @@
             <a href="{{ lk.href }}" onClick="{{ closeMenu }}" style="padding:14px 14px;font-size:16px;font-weight:600;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">{{ lk.label }}</a>
           </sc-for>
           <a href="APP_STORE_URL" style="margin-top:8px;text-align:center;padding:14px;border-radius:13px;font-weight:700;color:#fff;background:linear-gradient(120deg,#5B8DEF,#8B5CF6,#D946EF);box-shadow:0 10px 28px -8px rgba(139,92,246,.8)">{{ navCta }}</a>
+          <a href="https://www.learnin-go.com" class="lg-web lg-web--block" data-magnet="1">
+            <span class="lg-web__orb" aria-hidden="true"></span>
+            <span class="lg-web__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+            <span class="lg-web__txt"><span class="lg-web__t1">{{ webCta }}</span><span class="lg-web__t2">{{ webUrl }}</span></span>
+            <svg class="lg-web__arw" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
         </div>
       </div>
     </sc-if>
@@ -115,10 +152,16 @@
               <svg viewBox="0 0 24 24" width="24" height="24" fill="#fff"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.78 1.3 10.33.86 1.25 1.88 2.65 3.22 2.6 1.29-.05 1.78-.83 3.34-.83 1.56 0 2 .83 3.37.81 1.39-.03 2.27-1.27 3.12-2.53.98-1.45 1.39-2.85 1.41-2.92-.03-.01-2.7-1.04-2.73-4.13ZM14.69 4.81c.71-.86 1.19-2.05 1.06-3.24-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.97-1.08 3.13 1.14.09 2.3-.58 3.01-1.43Z"/></svg>
               <span style="display:flex;flex-direction:column;line-height:1.15;text-align:start"><span style="font-size:11px;opacity:.8;font-weight:500">{{ getOn }}</span><span style="font-size:16px;font-weight:700">{{ ctaIos }}</span></span>
             </a>
-            <a href="GOOGLE_PLAY_URL" style="display:inline-flex;align-items:center;gap:11px;padding:14px 22px;border-radius:15px;color:#fff;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.04);backdrop-filter:blur(10px);transition:transform .22s,background .22s,border-color .22s" style-hover="transform:translateY(-3px) scale(1.02);background:rgba(255,255,255,.08);border-color:rgba(168,85,247,.5)">
-              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3.6 2.3 13 11.7l-9.4 9.4c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1Z" fill="#5B8DEF"/><path d="M16.6 8.9 13 11.7 5 3.7l8.7 5c1 .6 1.9 1.1 2.9 1.7v-1.5Z" fill="#34D399"/><path d="m13 11.7 3.6 2.8c1-.6 2-1.1 2.9-1.7.7-.4 1.1-1 1.1-1.1 0-.1-.4-.7-1.1-1.1-.9-.5-1.9-1.1-2.9-1.7L13 11.7Z" fill="#FBBF24"/><path d="M5 19.7 13 11.7l3.6 2.8L5 19.7Z" fill="#EF4467"/></svg>
-              <span style="display:flex;flex-direction:column;line-height:1.15;text-align:start"><span style="font-size:11px;opacity:.8;font-weight:500">{{ getOn }}</span><span style="font-size:16px;font-weight:700">{{ ctaAndroid }}</span></span>
+            <a href="https://www.learnin-go.com" class="lg-web" data-magnet="1">
+              <span class="lg-web__orb" aria-hidden="true"></span>
+              <span class="lg-web__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+              <span class="lg-web__txt"><span class="lg-web__t1">{{ webCta }}</span><span class="lg-web__t2">{{ webUrl }}</span></span>
+              <svg class="lg-web__arw" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
             </a>
+            <span class="lg-soon" role="button" aria-disabled="true">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3.6 2.3 13 11.7l-9.4 9.4c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1Z" fill="#5B8DEF"/><path d="M16.6 8.9 13 11.7 5 3.7l8.7 5c1 .6 1.9 1.1 2.9 1.7v-1.5Z" fill="#34D399"/><path d="m13 11.7 3.6 2.8c1-.6 2-1.1 2.9-1.7.7-.4 1.1-1 1.1-1.1 0-.1-.4-.7-1.1-1.1-.9-.5-1.9-1.1-2.9-1.7L13 11.7Z" fill="#FBBF24"/><path d="M5 19.7 13 11.7l3.6 2.8L5 19.7Z" fill="#EF4467"/></svg>
+              <span class="lg-soon__lbl"><span class="lg-soon__top">{{ soon }}</span><span class="lg-soon__main">{{ ctaAndroid }}</span></span>
+            </span>
           </div>
           <div data-reveal style="display:flex;align-items:center;gap:10px;color:rgba(236,234,246,.5);font-size:13.5px">
             <div style="display:flex">
@@ -328,10 +371,16 @@
             <svg viewBox="0 0 24 24" width="24" height="24" fill="#1a1030"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.78 1.3 10.33.86 1.25 1.88 2.65 3.22 2.6 1.29-.05 1.78-.83 3.34-.83 1.56 0 2 .83 3.37.81 1.39-.03 2.27-1.27 3.12-2.53.98-1.45 1.39-2.85 1.41-2.92-.03-.01-2.7-1.04-2.73-4.13ZM14.69 4.81c.71-.86 1.19-2.05 1.06-3.24-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.97-1.08 3.13 1.14.09 2.3-.58 3.01-1.43Z"/></svg>
             <span style="display:flex;flex-direction:column;line-height:1.15;text-align:start"><span style="font-size:11px;opacity:.6;font-weight:500">{{ getOn }}</span><span style="font-size:16px;font-weight:700">{{ ctaIos }}</span></span>
           </a>
-          <a href="GOOGLE_PLAY_URL" style="display:inline-flex;align-items:center;gap:11px;padding:14px 24px;border-radius:15px;color:#fff;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);backdrop-filter:blur(10px);transition:transform .22s,background .22s" style-hover="transform:translateY(-3px) scale(1.02);background:rgba(255,255,255,.18)">
-            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3.6 2.3 13 11.7l-9.4 9.4c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1Z" fill="#5B8DEF"/><path d="M16.6 8.9 13 11.7 5 3.7l8.7 5c1 .6 1.9 1.1 2.9 1.7v-1.5Z" fill="#34D399"/><path d="m13 11.7 3.6 2.8c1-.6 2-1.1 2.9-1.7.7-.4 1.1-1 1.1-1.1 0-.1-.4-.7-1.1-1.1-.9-.5-1.9-1.1-2.9-1.7L13 11.7Z" fill="#FBBF24"/><path d="M5 19.7 13 11.7l3.6 2.8L5 19.7Z" fill="#EF4467"/></svg>
-            <span style="display:flex;flex-direction:column;line-height:1.15;text-align:start"><span style="font-size:11px;opacity:.7;font-weight:500">{{ getOn }}</span><span style="font-size:16px;font-weight:700">{{ ctaAndroid }}</span></span>
+          <a href="https://www.learnin-go.com" class="lg-web" data-magnet="1">
+            <span class="lg-web__orb" aria-hidden="true"></span>
+            <span class="lg-web__ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg></span>
+            <span class="lg-web__txt"><span class="lg-web__t1">{{ webCta }}</span><span class="lg-web__t2">{{ webUrl }}</span></span>
+            <svg class="lg-web__arw" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </a>
+          <span class="lg-soon lg-soon--card" role="button" aria-disabled="true">
+            <svg viewBox="0 0 24 24" width="22" height="22"><path d="M3.6 2.3 13 11.7l-9.4 9.4c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1Z" fill="#5B8DEF"/><path d="M16.6 8.9 13 11.7 5 3.7l8.7 5c1 .6 1.9 1.1 2.9 1.7v-1.5Z" fill="#34D399"/><path d="m13 11.7 3.6 2.8c1-.6 2-1.1 2.9-1.7.7-.4 1.1-1 1.1-1.1 0-.1-.4-.7-1.1-1.1-.9-.5-1.9-1.1-2.9-1.7L13 11.7Z" fill="#FBBF24"/><path d="M5 19.7 13 11.7l3.6 2.8L5 19.7Z" fill="#EF4467"/></svg>
+            <span class="lg-soon__lbl"><span class="lg-soon__top">{{ soon }}</span><span class="lg-soon__main">{{ ctaAndroid }}</span></span>
+          </span>
         </div>
       </div>
     </section>
@@ -391,9 +440,10 @@
             <span style="font-family:var(--fd);font-weight:700;font-size:20px;letter-spacing:-.02em">Learnin<span style="background:linear-gradient(120deg,#7CB0FF,#A78BFA,#E879F9);-webkit-background-clip:text;background-clip:text;color:transparent">Go</span></span>
           </a>
           <p style="font-size:14px;line-height:1.6;color:rgba(236,234,246,.55);max-width:300px;margin-bottom:18px;text-wrap:pretty">{{ footDesc }}</p>
-          <div style="display:flex;gap:10px">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
             <a href="APP_STORE_URL" style="display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:13px;font-weight:600;transition:border-color .2s" style-hover="border-color:rgba(168,85,247,.5)"><svg viewBox="0 0 24 24" width="16" height="16" fill="#C9B8FF"><path d="M17.05 12.04c-.03-2.6 2.12-3.85 2.22-3.91-1.21-1.77-3.09-2.01-3.76-2.04-1.6-.16-3.12.94-3.93.94-.81 0-2.06-.92-3.39-.89-1.74.03-3.35 1.01-4.25 2.57-1.81 3.14-.46 7.78 1.3 10.33.86 1.25 1.88 2.65 3.22 2.6 1.29-.05 1.78-.83 3.34-.83 1.56 0 2 .83 3.37.81 1.39-.03 2.27-1.27 3.12-2.53.98-1.45 1.39-2.85 1.41-2.92-.03-.01-2.7-1.04-2.73-4.13ZM14.69 4.81c.71-.86 1.19-2.05 1.06-3.24-1.02.04-2.26.68-2.99 1.54-.66.76-1.23 1.97-1.08 3.13 1.14.09 2.3-.58 3.01-1.43Z"/></svg>App Store</a>
-            <a href="GOOGLE_PLAY_URL" style="display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:11px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:13px;font-weight:600;transition:border-color .2s" style-hover="border-color:rgba(168,85,247,.5)"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M3.6 2.3 13 11.7l-9.4 9.4c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1Z" fill="#5B8DEF"/><path d="M16.6 8.9 13 11.7 5 3.7l8.7 5 1.9 1.7v-1.5Z" fill="#34D399"/><path d="m13 11.7 3.6 2.8c1.7-1 3.4-2 4-3.1-.6-1-2.3-2.1-4-3.1L13 11.7Z" fill="#FBBF24"/><path d="M5 19.7 13 11.7l3.6 2.8L5 19.7Z" fill="#EF4467"/></svg>Google Play</a>
+            <span class="lg-soon lg-soon--sm" role="button" aria-disabled="true"><svg viewBox="0 0 24 24" width="15" height="15"><path d="M3.6 2.3 13 11.7l-9.4 9.4c-.3-.2-.5-.6-.5-1.1V3.4c0-.5.2-.9.5-1.1Z" fill="#5B8DEF"/><path d="M16.6 8.9 13 11.7 5 3.7l8.7 5 1.9 1.7v-1.5Z" fill="#34D399"/><path d="m13 11.7 3.6 2.8c1.7-1 3.4-2 4-3.1-.6-1-2.3-2.1-4-3.1L13 11.7Z" fill="#FBBF24"/><path d="M5 19.7 13 11.7l3.6 2.8L5 19.7Z" fill="#EF4467"/></svg>Google Play<span class="lg-soon__pill">{{ soon }}</span></span>
+            <a href="https://www.learnin-go.com" class="lg-web lg-web--sm" data-magnet="1"><span class="lg-web__orb" aria-hidden="true"></span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#C9B8FF" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.7 2.6 15.3 0 18M12 3c-2.6 2.7-2.6 15.3 0 18"/></svg>{{ webCta }}</a>
           </div>
         </div>
         <div>
@@ -463,6 +513,7 @@ class Component extends DCLogic {
       heroT1:'Your materials. Your course.', heroT2:'Ready to learn in minutes.',
       heroSub:'LearninGo turns summaries, slides, and files into a personalized AI-powered course with study units, summaries, quizzes, flashcards, and smart practice.',
       ctaIos:'iPhone', ctaAndroid:'Android',
+      soon:'Soon', webCta:'Browse on Web', webUrl:'www.learnin-go.com',
       heroTrust:'Loved by students preparing for exams',
       heroShotAlt:'Screenshot of a personal course inside the LearninGo app',
       chipUpload:'Upload PDF', chipQuiz:'Smart quiz', chipCards:'Flashcards',
@@ -523,6 +574,7 @@ class Component extends DCLogic {
       heroT1:'\u05d4\u05d7\u05d5\u05de\u05e8 \u05e9\u05dc\u05da. \u05d4\u05e7\u05d5\u05e8\u05e1 \u05e9\u05dc\u05da.', heroT2:'\u05de\u05d5\u05db\u05df \u05dc\u05dc\u05de\u05d9\u05d3\u05d4 \u05ea\u05d5\u05da \u05d3\u05e7\u05d5\u05ea.',
       heroSub:'LearninGo \u05d4\u05d5\u05e4\u05db\u05ea \u05e1\u05d9\u05db\u05d5\u05de\u05d9\u05dd, \u05de\u05e6\u05d2\u05d5\u05ea \u05d5\u05e7\u05d1\u05e6\u05d9\u05dd \u05dc\u05e7\u05d5\u05e8\u05e1 \u05d0\u05d9\u05e9\u05d9 \u05e2\u05dd \u05d9\u05d7\u05d9\u05d3\u05d5\u05ea \u05dc\u05d9\u05de\u05d5\u05d3, \u05e1\u05d9\u05db\u05d5\u05de\u05d9\u05dd, \u05e9\u05d0\u05dc\u05d5\u05ea, \u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05d5\u05ea \u05d5\u05ea\u05e8\u05d2\u05d5\u05dc \u05d7\u05db\u05dd.',
       ctaIos:'\u05dc\u05d0\u05d9\u05d9\u05e4\u05d5\u05df', ctaAndroid:'\u05dc\u05d0\u05e0\u05d3\u05e8\u05d5\u05d0\u05d9\u05d3',
+      soon:'\u05d1\u05e7\u05e8\u05d5\u05d1', webCta:'\u05dc\u05d2\u05dc\u05d9\u05e9\u05d4 \u05d1-WEB', webUrl:'www.learnin-go.com',
       heroTrust:'\u05e1\u05d8\u05d5\u05d3\u05e0\u05d8\u05d9\u05dd \u05e9\u05de\u05ea\u05db\u05d5\u05e0\u05e0\u05d9\u05dd \u05dc\u05de\u05d1\u05d7\u05e0\u05d9\u05dd \u05db\u05d1\u05e8 \u05e0\u05d4\u05e0\u05d9\u05dd',
       heroShotAlt:'\u05e6\u05d9\u05dc\u05d5\u05dd \u05de\u05e1\u05da \u05de\u05ea\u05d5\u05da \u05e7\u05d5\u05e8\u05e1 \u05d0\u05d9\u05e9\u05d9 \u05d1\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d9\u05ea LearninGo',
       chipUpload:'\u05d4\u05e2\u05dc\u05d0\u05ea \u05e7\u05d5\u05d1\u05e5', chipQuiz:'\u05e9\u05d0\u05dc\u05d5\u05ea \u05d7\u05db\u05de\u05d5\u05ea', chipCards:'\u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05d5\u05ea',
@@ -581,6 +633,7 @@ class Component extends DCLogic {
 
   componentDidMount(){
     this.makeParticles();
+    this.initMagnet();
     this._raf = 0;
     // batch all scroll-driven work into a single rAF frame to stay buttery at 60fps
     this.scheduleFrame = ()=>{ if(this._raf) return; this._raf = requestAnimationFrame(()=>{ this._raf = 0; this.frame(); }); };
@@ -593,11 +646,54 @@ class Component extends DCLogic {
     // run a few times after mount to catch in-viewport elements + late layout/fonts
     [60,180,400,800].forEach(t=>setTimeout(()=>{ this.applyResponsive(); this.frame(); }, t));
   }
+
+  // cursor-tracking spotlight + magnetic tilt for [data-magnet] buttons.
+  // delegated on document so it survives the re-render on language switch.
+  initMagnet(){
+    if(this._magnetOn) return;
+    this._magnetOn = true;
+    this._magnetEl = null;
+    const reduce = !!(this.props && this.props.reduceMotion);
+    const clear = (el)=>{
+      if(!el) return;
+      el.style.setProperty('--tx','0px'); el.style.setProperty('--ty','0px');
+      el.style.setProperty('--rx','0deg'); el.style.setProperty('--ry','0deg');
+    };
+    this.onMagnetMove = (e)=>{
+      const el = (e.target && e.target.closest) ? e.target.closest('[data-magnet]') : null;
+      if(this._magnetEl && this._magnetEl !== el) clear(this._magnetEl);
+      this._magnetEl = el;
+      if(!el) return;
+      const r = el.getBoundingClientRect();
+      if(!r.width || !r.height) return;
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      const px = x/r.width - .5, py = y/r.height - .5;
+      el.style.setProperty('--mx', ((x/r.width)*100).toFixed(2)+'%');
+      el.style.setProperty('--my', ((y/r.height)*100).toFixed(2)+'%');
+      el.style.setProperty('--mpx', x.toFixed(1)+'px');
+      el.style.setProperty('--mpy', y.toFixed(1)+'px');
+      // screen angle -> css conic angle (+90), shifted so the bright band trails the cursor
+      el.style.setProperty('--ang', (Math.atan2(py,px)*180/Math.PI - 40).toFixed(1)+'deg');
+      if(reduce) return;
+      el.style.setProperty('--tx', (px*12).toFixed(2)+'px');
+      el.style.setProperty('--ty', (py*9).toFixed(2)+'px');
+      el.style.setProperty('--rx', (-py*11).toFixed(2)+'deg');
+      el.style.setProperty('--ry', (px*15).toFixed(2)+'deg');
+    };
+    this.onMagnetOut = ()=>{ clear(this._magnetEl); this._magnetEl = null; };
+    document.addEventListener('pointermove', this.onMagnetMove, {passive:true});
+    document.addEventListener('pointerleave', this.onMagnetOut, {passive:true});
+    window.addEventListener('blur', this.onMagnetOut);
+  }
+
   componentDidUpdate(){ this.applyResponsive(); requestAnimationFrame(()=>this.frame()); }
   componentWillUnmount(){
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onResize);
     if(this._raf) cancelAnimationFrame(this._raf);
+    document.removeEventListener('pointermove', this.onMagnetMove);
+    document.removeEventListener('pointerleave', this.onMagnetOut);
+    window.removeEventListener('blur', this.onMagnetOut);
   }
 
   // single batched frame for every scroll/resize-driven effect
