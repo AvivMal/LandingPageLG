@@ -206,9 +206,9 @@
           <h2 style="font-family:var(--fd);font-weight:700;font-size:clamp(26px,3.4vw,40px);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;text-wrap:balance">{{ vidTitle }}</h2>
           <p style="font-size:17px;line-height:1.6;color:rgba(236,234,246,.66);max-width:440px;text-wrap:pretty">{{ vidSub }}</p>
         </div>
-        <div style="width:min(100%,250px);display:flex;flex-direction:column;align-items:stretch;gap:18px;justify-self:center">
+        <div style="width:min(100%,clamp(160px,30svh,250px));display:flex;flex-direction:column;align-items:stretch;gap:18px;justify-self:center">
           <div style="width:100%;aspect-ratio:5/11;border-radius:30px;padding:9px;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:0 40px 80px -20px rgba(91,40,180,.6)">
-            <video controls playsinline preload="metadata" aria-label="{{ vidVideoLabel }}" style="display:block;width:100%;height:100%;border-radius:23px;background:#0e0a1f;object-fit:contain">
+            <video data-demo-video muted playsinline preload="metadata" tabindex="0" role="button" aria-label="{{ vidVideoLabel }}" style="display:block;width:100%;height:100%;border-radius:23px;background:#0e0a1f;object-fit:contain;cursor:pointer">
               <source src="assets/learningo-app-demo.mp4" type="video/mp4">
             </video>
           </div>
@@ -632,6 +632,7 @@ class Component extends DCLogic {
     window.addEventListener('scroll', this.onScroll, {passive:true});
     this.applyResponsive();
     this.frame();
+    this.setupDemoVideo();
     this.onResize = ()=>{ this.applyResponsive(); this.scheduleFrame(); };
     window.addEventListener('resize', this.onResize, {passive:true});
     // run a few times after mount to catch in-viewport elements + late layout/fonts
@@ -677,7 +678,7 @@ class Component extends DCLogic {
     window.addEventListener('blur', this.onMagnetOut);
   }
 
-  componentDidUpdate(){ this.applyResponsive(); requestAnimationFrame(()=>this.frame()); }
+  componentDidUpdate(){ this.applyResponsive(); this.setupDemoVideo(); requestAnimationFrame(()=>this.frame()); }
   componentWillUnmount(){
     window.removeEventListener('scroll', this.onScroll);
     window.removeEventListener('resize', this.onResize);
@@ -685,6 +686,72 @@ class Component extends DCLogic {
     document.removeEventListener('pointermove', this.onMagnetMove);
     document.removeEventListener('pointerleave', this.onMagnetOut);
     window.removeEventListener('blur', this.onMagnetOut);
+    this.cleanupDemoVideo();
+  }
+
+  setupDemoVideo(){
+    const video = document.querySelector('[data-demo-video]');
+    if(!video || video === this._demoVideo) return;
+    this.cleanupDemoVideo();
+    this._demoVideo = video;
+    this._demoAutoStarted = false;
+    this._demoFinished = false;
+    video.muted = true; // required for reliable scroll-triggered autoplay on mobile
+    video.controls = false;
+    video.loop = false;
+
+    const play = ()=>{
+      const attempt = video.play();
+      if(attempt && attempt.catch) attempt.catch(()=>{});
+    };
+    this.onDemoEnded = ()=>{ this._demoFinished = true; };
+    this.onDemoActivate = ()=>{
+      this._demoAutoStarted = true;
+      if(video.ended || this._demoFinished){
+        video.currentTime = 0;
+        this._demoFinished = false;
+      }
+      if(video.paused) play();
+    };
+    this.onDemoKeyDown = (e)=>{
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        this.onDemoActivate();
+      }
+    };
+    video.addEventListener('ended', this.onDemoEnded);
+    video.addEventListener('click', this.onDemoActivate);
+    video.addEventListener('keydown', this.onDemoKeyDown);
+
+    this._demoObserver = new IntersectionObserver(entries=>{
+      const visible = entries[0].intersectionRatio >= 0.35;
+      if(visible && !this._demoFinished){
+        if(!this._demoAutoStarted){
+          this._demoAutoStarted = true;
+          play();
+        } else if(this._demoPausedOffscreen){
+          this._demoPausedOffscreen = false;
+          play();
+        }
+      } else if(!visible && !video.paused){
+        video.pause();
+        this._demoPausedOffscreen = true;
+      }
+    }, {threshold:[0,0.35]});
+    this._demoObserver.observe(video);
+  }
+
+  cleanupDemoVideo(){
+    if(this._demoObserver) this._demoObserver.disconnect();
+    if(this._demoVideo){
+      this._demoVideo.pause();
+      this._demoVideo.removeEventListener('ended', this.onDemoEnded);
+      this._demoVideo.removeEventListener('click', this.onDemoActivate);
+      this._demoVideo.removeEventListener('keydown', this.onDemoKeyDown);
+    }
+    this._demoObserver = null;
+    this._demoVideo = null;
+    this._demoPausedOffscreen = false;
   }
 
   // single batched frame for every scroll/resize-driven effect
