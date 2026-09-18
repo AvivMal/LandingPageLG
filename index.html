@@ -392,7 +392,7 @@
         <h2 style="font-family:var(--fd);font-weight:700;font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.025em;text-wrap:balance">{{ faqTitle }}</h2>
       </div>
       <div style="display:flex;flex-direction:column;gap:12px">
-        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="7">
           <div data-reveal style="border-radius:18px;background:linear-gradient(150deg,rgba(255,255,255,.05),rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.09);overflow:hidden;backdrop-filter:blur(10px)">
             <button onClick="{{ f.onToggle }}" aria-expanded="{{ f.open }}" style="width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;text-align:start">
               <span style="font-family:var(--fd);font-weight:600;font-size:16.5px;color:#fff">{{ f.q }}</span>
@@ -401,7 +401,7 @@
               </span>
             </button>
             <div style="max-height:{{ f.maxH }};overflow:hidden;transition:max-height .4s cubic-bezier(.16,.8,.3,1)">
-              <p style="padding:0 22px 22px;font-size:14.5px;line-height:1.65;color:rgba(236,234,246,.66);text-wrap:pretty">{{ f.a }}</p>
+              <p style="padding:0 22px 22px;font-size:14.5px;line-height:1.65;color:rgba(236,234,246,.66);text-wrap:pretty"><sc-if value="{{ f.emphasis }}"><strong>{{ f.emphasis }}</strong> </sc-if>{{ f.a }}</p>
             </div>
           </div>
         </sc-for>
@@ -557,7 +557,10 @@ class Component extends DCLogic {
         {q:'What does LearninGo do?',a:'LearninGo turns learning materials into a structured personal course with study units, summaries, practice, quizzes, and flashcards.'},
         {q:'What files can I upload?',a:'You can upload learning materials such as summaries, presentations, and other supported study files.'},
         {q:'Is it good for exam preparation?',a:'Yes. LearninGo helps students organize material, understand what to study, and practice more effectively.'},
-        {q:'Does it support Hebrew and English?',a:'Yes. The experience supports both Hebrew and English with proper RTL and LTR behavior.'}
+        {q:'Does it support Hebrew and English?',a:'Yes. The experience supports both Hebrew and English with proper RTL and LTR behavior.'},
+        {q:'I have a programming course. How can LearninGo help me study for it?',a:'LearninGo turns your course into a hands-on practice environment: write and run code directly in the app, see its output and errors, practice coding questions and True / False games, and check whether you really understand what the code does.'},
+        {q:'I have a quantitative course with calculations and diagrams. How does LearninGo help?',a:'With LearninGo’s smart notebook, you can solve exercises just as you would in a notebook: write with a pen on an iPad, type formulas, build equations, graphs and shapes, and practice questions straight from the course. Learning does not stop at the explanation; you move straight to solving real problems.'},
+        {q:'How is LearninGo different from other learning platforms?',emphasis:'LearninGo learns how you learn.',a:'It recognizes your successes, recurring mistakes, pace and learning preferences, then adapts the explanations, practice and your progress accordingly. It can even connect examples and questions to subjects that interest you, making the material feel more natural and relevant.'}
       ],
       conKicker:'Contact', conTitle:'Want to talk to us?',
       conSub:'Have a question, partnership idea, or feedback? We\u2019d love to hear from you.',
@@ -618,7 +621,10 @@ class Component extends DCLogic {
         {q:'\u05de\u05d4 LearninGo \u05e2\u05d5\u05e9\u05d4?',a:'LearninGo \u05d4\u05d5\u05e4\u05db\u05ea \u05d7\u05d5\u05de\u05e8\u05d9 \u05dc\u05d9\u05de\u05d5\u05d3 \u05dc\u05e7\u05d5\u05e8\u05e1 \u05d0\u05d9\u05e9\u05d9 \u05d5\u05de\u05d5\u05d1\u05e0\u05d4 \u05e2\u05dd \u05d9\u05d7\u05d9\u05d3\u05d5\u05ea \u05dc\u05d9\u05de\u05d5\u05d3, \u05e1\u05d9\u05db\u05d5\u05de\u05d9\u05dd, \u05ea\u05e8\u05d2\u05d5\u05dc, \u05e9\u05d0\u05dc\u05d5\u05ea \u05d5\u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05d5\u05ea.'},
         {q:'\u05d0\u05d9\u05dc\u05d5 \u05e7\u05d1\u05e6\u05d9\u05dd \u05d0\u05e4\u05e9\u05e8 \u05dc\u05d4\u05e2\u05dc\u05d5\u05ea?',a:'\u05e0\u05d9\u05ea\u05df \u05dc\u05d4\u05e2\u05dc\u05d5\u05ea \u05d7\u05d5\u05de\u05e8\u05d9 \u05dc\u05d9\u05de\u05d5\u05d3 \u05db\u05de\u05d5 \u05e1\u05d9\u05db\u05d5\u05de\u05d9\u05dd, \u05de\u05e6\u05d2\u05d5\u05ea \u05d5\u05e7\u05d1\u05e6\u05d9\u05dd \u05e8\u05dc\u05d5\u05d5\u05e0\u05d8\u05d9\u05d9\u05dd \u05e0\u05d5\u05e1\u05e4\u05d9\u05dd \u05d1\u05d4\u05ea\u05d0\u05dd \u05dc\u05de\u05d4 \u05e9\u05d4\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d4 \u05ea\u05d5\u05de\u05db\u05ea \u05d1\u05d5.'},
         {q:'\u05d4\u05d0\u05dd \u05d6\u05d4 \u05de\u05ea\u05d0\u05d9\u05dd \u05dc\u05dc\u05de\u05d9\u05d3\u05d4 \u05dc\u05de\u05d1\u05d7\u05e0\u05d9\u05dd?',a:'\u05db\u05df. LearninGo \u05e0\u05d5\u05e2\u05d3\u05d4 \u05dc\u05e2\u05d6\u05d5\u05e8 \u05dc\u05e1\u05d8\u05d5\u05d3\u05e0\u05d8\u05d9\u05dd \u05dc\u05d0\u05e8\u05d2\u05df \u05d7\u05d5\u05de\u05e8, \u05dc\u05d4\u05d1\u05d9\u05df \u05de\u05d4 \u05dc\u05dc\u05de\u05d5\u05d3, \u05d5\u05dc\u05ea\u05e8\u05d2\u05dc \u05d1\u05e6\u05d5\u05e8\u05d4 \u05d7\u05db\u05de\u05d4.'},
-        {q:'\u05d4\u05d0\u05dd \u05d0\u05e4\u05e9\u05e8 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05d5\u05d1\u05d0\u05e0\u05d2\u05dc\u05d9\u05ea?',a:'\u05db\u05df. \u05d4\u05d3\u05e3 \u05ea\u05d5\u05de\u05da \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05d5\u05d1\u05d0\u05e0\u05d2\u05dc\u05d9\u05ea, \u05e2\u05dd \u05ea\u05de\u05d9\u05db\u05d4 \u05de\u05dc\u05d0\u05d4 \u05d1-RTL \u05d5-LTR.'}
+        {q:'\u05d4\u05d0\u05dd \u05d0\u05e4\u05e9\u05e8 \u05dc\u05d4\u05e9\u05ea\u05de\u05e9 \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05d5\u05d1\u05d0\u05e0\u05d2\u05dc\u05d9\u05ea?',a:'\u05db\u05df. \u05d4\u05d3\u05e3 \u05ea\u05d5\u05de\u05da \u05d1\u05e2\u05d1\u05e8\u05d9\u05ea \u05d5\u05d1\u05d0\u05e0\u05d2\u05dc\u05d9\u05ea, \u05e2\u05dd \u05ea\u05de\u05d9\u05db\u05d4 \u05de\u05dc\u05d0\u05d4 \u05d1-RTL \u05d5-LTR.'},
+        {q:'יש לי קורס בתכנות. איך LearninGo יכולה לעזור לי ללמוד אליו?',a:'LearninGo הופכת את הקורס לסביבת תרגול אמיתית: אפשר לכתוב ולהריץ קוד ישירות באפליקציה, לקבל פלט ושגיאות, לתרגל שאלות קוד ומשחקי True / False ולבדוק אם באמת הבנתם מה הקוד עושה.'},
+        {q:'יש לי קורס כמותי עם חישובים ושרטוטים. איך LearninGo עוזרת לי?',a:'עם המחברת החכמה של LearninGo אפשר לפתור תרגילים ממש כמו במחברת: לכתוב בעט באייפד, להקליד נוסחאות, לבנות משוואות, גרפים וצורות ולתרגל שאלות ישירות מתוך הקורס. הלמידה לא נעצרת בהסבר, עוברים מיד לפתרון אמיתי.'},
+        {q:'במה LearninGo שונה מפלטפורמות למידה אחרות?',emphasis:'LearninGo לומדת איך אתם לומדים.',a:'היא מזהה הצלחות, טעויות חוזרות, קצב והעדפות למידה ומתאימה בהתאם את ההסברים, התרגול וההתקדמות שלכם. היא אפילו יכולה לחבר דוגמאות ושאלות לעולמות שמעניינים אתכם, כדי שהחומר ירגיש הרבה יותר טבעי ורלוונטי.'}
       ],
       conKicker:'\u05e6\u05e8\u05d5 \u05e7\u05e9\u05e8', conTitle:'\u05e8\u05d5\u05e6\u05d9\u05dd \u05dc\u05d3\u05d1\u05e8 \u05d0\u05d9\u05ea\u05e0\u05d5?',
       conSub:'\u05d9\u05e9 \u05dc\u05db\u05dd \u05e9\u05d0\u05dc\u05d4, \u05e8\u05e2\u05d9\u05d5\u05df \u05dc\u05e9\u05d9\u05ea\u05d5\u05e3 \u05e4\u05e2\u05d5\u05dc\u05d4 \u05d0\u05d5 \u05e4\u05d9\u05d3\u05d1\u05e7? \u05e0\u05e9\u05de\u05d7 \u05dc\u05e9\u05de\u05d5\u05e2.',
