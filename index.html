@@ -51,6 +51,10 @@
   .lg-web--sm{padding:9px 14px;border-radius:11px;gap:7px;font-size:13px;font-weight:600}
   .lg-web--sm .lg-web__orb{width:110px;height:110px;margin:-55px 0 0 -55px}
   .lg-web--block{display:flex;justify-content:center;text-align:center}
+  .lg-web--demo{width:min(100%,460px);justify-content:center;padding:18px 26px;border-color:rgba(216,180,254,.65);background:linear-gradient(120deg,rgba(91,141,239,.65),rgba(139,92,246,.78),rgba(217,70,243,.65));box-shadow:0 18px 42px -14px rgba(139,92,246,.9),inset 0 1px 0 rgba(255,255,255,.24)}
+  .lg-web--demo .lg-web__txt{align-items:center;text-align:center}
+  .lg-web--demo .lg-web__t1{font-size:clamp(16px,2vw,19px)}
+  .lg-web--demo .lg-web__t2{font-size:12px;color:#fff;opacity:.85}
   [data-reduce] .lg-web{transform:none!important}
 
   /* ---- disabled "coming soon" store button ---- */
@@ -206,15 +210,19 @@
           <h2 style="font-family:var(--fd);font-weight:700;font-size:clamp(26px,3.4vw,40px);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;text-wrap:balance">{{ vidTitle }}</h2>
           <p style="font-size:17px;line-height:1.6;color:rgba(236,234,246,.66);max-width:440px;text-wrap:pretty">{{ vidSub }}</p>
         </div>
-        <div style="width:min(100%,clamp(160px,30svh,250px));display:flex;flex-direction:column;align-items:stretch;gap:18px;justify-self:center">
-          <div style="width:100%;aspect-ratio:5/11;border-radius:30px;padding:9px;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:0 40px 80px -20px rgba(91,40,180,.6)">
-            <video data-demo-video muted playsinline preload="metadata" tabindex="0" role="button" aria-label="{{ vidVideoLabel }}" style="display:block;width:100%;height:100%;border-radius:23px;background:#0e0a1f;object-fit:contain;cursor:pointer">
+        <div data-demo-column style="width:min(100%,clamp(300px,40svh,390px));justify-self:center">
+          <div style="position:relative;width:100%;aspect-ratio:5/11;border-radius:30px;padding:9px;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:0 40px 80px -20px rgba(91,40,180,.6)">
+            <video data-demo-video playsinline preload="metadata" tabindex="0" role="button" aria-label="{{ vidVideoLabel }}" style="display:block;width:100%;height:100%;border-radius:23px;background:#0e0a1f;object-fit:contain;cursor:pointer">
               <source src="assets/learningo-app-demo.mp4" type="video/mp4">
             </video>
+            <span data-demo-sound-hint style="display:none;position:absolute;bottom:20px;inset-inline:20px;padding:8px 12px;border-radius:10px;background:rgba(10,7,23,.8);color:#fff;font-size:12px;font-weight:600;text-align:center;pointer-events:none">{{ vidSoundHint }}</span>
           </div>
-          <a href="https://www.learnin-go.com" style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:15px 18px;border-radius:14px;background:linear-gradient(120deg,#5B8DEF,#8B5CF6,#D946EF);box-shadow:0 12px 30px -10px rgba(139,92,246,.8);color:#fff;text-align:center;line-height:1.35" style-hover="transform:translateY(-2px);box-shadow:0 18px 36px -10px rgba(139,92,246,.95)">
-            <span style="font-size:15px;font-weight:700">{{ vidCta }}</span>
-            <span style="font-size:12px;font-weight:500;opacity:.9;direction:ltr;unicode-bidi:isolate">{{ webUrl }}</span>
+        </div>
+        <div data-reveal style="grid-column:1/-1;display:flex;justify-content:center">
+          <a href="https://www.learnin-go.com" class="lg-web lg-web--demo" data-magnet="1">
+            <span class="lg-web__orb" aria-hidden="true"></span>
+            <span class="lg-web__txt"><span class="lg-web__t1">{{ vidCta }}</span><span class="lg-web__t2">{{ webUrl }}</span></span>
+            <svg class="lg-web__arw" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
           </a>
         </div>
       </div>
@@ -503,7 +511,7 @@ class Component extends DCLogic {
       heroShotAlt:'Screenshot of a personal course inside the LearninGo app',
       chipUpload:'Upload PDF', chipQuiz:'Smart quiz', chipCards:'Flashcards',
       vidKicker:'A look at LearninGo in action', vidTitle:'See how messy material becomes a clear, personal and focused learning path.',
-      vidSub:'A short demo showing how LearninGo works, from uploading your materials to learning with them.', vidVideoLabel:'LearninGo app demo video',
+      vidSub:'A short demo showing how LearninGo works, from uploading your materials to learning with them.', vidVideoLabel:'LearninGo app demo video', vidSoundHint:'Tap the video to turn on sound',
       vidCta:'Ready to learn differently? Try LearninGo for free now.',
       lingoKicker:'Meet Lingo', lingoTitle:'Your personal guide',
       lingoImgAlt:'Lingo, the AI guide, teaching at a board',
@@ -567,7 +575,7 @@ class Component extends DCLogic {
       heroShotAlt:'\u05e6\u05d9\u05dc\u05d5\u05dd \u05de\u05e1\u05da \u05de\u05ea\u05d5\u05da \u05e7\u05d5\u05e8\u05e1 \u05d0\u05d9\u05e9\u05d9 \u05d1\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d9\u05ea LearninGo',
       chipUpload:'\u05d4\u05e2\u05dc\u05d0\u05ea \u05e7\u05d5\u05d1\u05e5', chipQuiz:'\u05e9\u05d0\u05dc\u05d5\u05ea \u05d7\u05db\u05de\u05d5\u05ea', chipCards:'\u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05d5\u05ea',
       vidKicker:'הצצה ל-LearninGo בפעולה', vidTitle:'ראו איך חומר מבולגן הופך למסלול למידה ברור, אישי וממוקד.',
-      vidSub:'הדגמה קצרה שתראה לכם איך LearninGo עובדת מהעלאת החומר שלכם ועד ללמידה בפועל.', vidVideoLabel:'סרטון הדגמה של אפליקציית LearninGo',
+      vidSub:'הדגמה קצרה שתראה לכם איך LearninGo עובדת מהעלאת החומר שלכם ועד ללמידה בפועל.', vidVideoLabel:'סרטון הדגמה של אפליקציית LearninGo', vidSoundHint:'לחצו על הסרטון להפעלת קול',
       vidCta:'מוכנים ללמוד אחרת? נסו את LearninGo עכשיו בחינם.',
       lingoKicker:'\u05d4\u05db\u05d9\u05e8\u05d5 \u05d0\u05ea \u05dc\u05d9\u05e0\u05d2\u05d5', lingoTitle:'\u05d4\u05de\u05d3\u05e8\u05d9\u05da \u05d4\u05d0\u05d9\u05e9\u05d9 \u05e9\u05dc\u05db\u05dd',
       lingoImgAlt:'\u05dc\u05d9\u05e0\u05d2\u05d5, \u05d4\u05de\u05d3\u05e8\u05d9\u05da \u05d4\u05d7\u05db\u05dd, \u05de\u05dc\u05de\u05d3 \u05dc\u05d9\u05d3 \u05dc\u05d5\u05d7',
@@ -696,22 +704,41 @@ class Component extends DCLogic {
     this._demoVideo = video;
     this._demoAutoStarted = false;
     this._demoFinished = false;
-    video.muted = true; // required for reliable scroll-triggered autoplay on mobile
+    this._demoNeedsGesture = false;
+    this._demoUserActivated = false;
+    video.muted = false;
     video.controls = false;
     video.loop = false;
 
-    const play = ()=>{
+    const showSoundHint = (show)=>{
+      const hint = video.parentElement.querySelector('[data-demo-sound-hint]');
+      if(hint) hint.style.display = show ? 'block' : 'none';
+    };
+    const play = (userActivated=false)=>{
+      video.muted = !userActivated && !!this._demoNeedsGesture;
+      showSoundHint(video.muted);
       const attempt = video.play();
-      if(attempt && attempt.catch) attempt.catch(()=>{});
+      if(attempt && attempt.catch) attempt.catch(err=>{
+        if(!userActivated && !this._demoUserActivated && !video.muted && err && err.name === 'NotAllowedError'){
+          this._demoNeedsGesture = true;
+          video.muted = true;
+          showSoundHint(true);
+          const fallback = video.play();
+          if(fallback && fallback.catch) fallback.catch(()=>{});
+        }
+      });
     };
     this.onDemoEnded = ()=>{ this._demoFinished = true; };
     this.onDemoActivate = ()=>{
       this._demoAutoStarted = true;
+      this._demoNeedsGesture = false;
+      this._demoUserActivated = true;
       if(video.ended || this._demoFinished){
         video.currentTime = 0;
         this._demoFinished = false;
       }
-      if(video.paused) play();
+      if(video.paused) play(true);
+      else { video.muted = false; showSoundHint(false); }
     };
     this.onDemoKeyDown = (e)=>{
       if(e.key === 'Enter' || e.key === ' '){
@@ -837,6 +864,7 @@ class Component extends DCLogic {
     set('[data-hero-grid]', { gridTemplateColumns: single?'1fr':'1.05fr .95fr', textAlign: single?'center':'start' });
     const heroVisual = document.querySelector('[data-hero-grid]');
     set('[data-video-grid]', { gridTemplateColumns: single?'1fr':'1fr auto', textAlign: single?'center':'start' });
+    set('[data-demo-column]', { width: single?'min(72vw,270px)':'min(100%,clamp(300px,40svh,390px))' });
     set('[data-contact-grid]', { gridTemplateColumns: single?'1fr':'1fr 1fr' });
     set('[data-footer-grid]', { gridTemplateColumns: w<=720?'1fr':'1.4fr 1fr 1fr' });
     set('[data-lingo-grid]', { gridTemplateColumns: single?'1fr':'.96fr 1.04fr' });
