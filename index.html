@@ -197,7 +197,7 @@
       </div>
     </header>
 
-    <!-- ============ VIDEO / UGC ============ -->
+    <!-- ============ APP DEMO VIDEO ============ -->
     <section style="position:relative;padding:60px 24px;max-width:1240px;margin:0 auto">
       <div data-reveal style="display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;padding:clamp(24px,4vw,52px);border-radius:30px;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.09);backdrop-filter:blur(16px);overflow:hidden" data-video-grid>
         <div style="position:absolute;top:-40%;inset-inline-start:-10%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(217,70,243,.2),transparent 65%);filter:blur(40px);pointer-events:none"></div>
@@ -205,33 +205,18 @@
           <div style="display:inline-block;padding:6px 13px;border-radius:100px;background:rgba(217,70,243,.14);border:1px solid rgba(217,70,243,.3);font-size:12.5px;font-weight:600;color:#F0C7FB;margin-bottom:18px">{{ vidKicker }}</div>
           <h2 style="font-family:var(--fd);font-weight:700;font-size:clamp(26px,3.4vw,40px);line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;text-wrap:balance">{{ vidTitle }}</h2>
           <p style="font-size:17px;line-height:1.6;color:rgba(236,234,246,.66);max-width:440px;text-wrap:pretty">{{ vidSub }}</p>
-          <div style="display:flex;align-items:center;gap:14px;margin-top:26px">
-            <div style="display:flex;align-items:center;gap:-8px">
-              <span style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#5B8DEF,#8B5CF6);border:2px solid #120b26"></span>
-              <span style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#8B5CF6,#D946EF);border:2px solid #120b26;margin-inline-start:-12px"></span>
-              <span style="width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#D946EF,#F472B6);border:2px solid #120b26;margin-inline-start:-12px"></span>
-            </div>
-            <span style="font-size:13.5px;color:rgba(236,234,246,.55)">{{ vidProof }}</span>
-          </div>
         </div>
-        <!-- vertical phone video -->
-        <a href="UGC_VIDEO_URL" aria-label="Play testimonial video" style="position:relative;display:block;width:230px;flex:none;justify-self:center">
-          <div style="position:relative;width:230px;height:410px;border-radius:30px;padding:9px;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:0 40px 80px -20px rgba(91,40,180,.6)">
-            <div style="width:100%;height:100%;border-radius:23px;overflow:hidden;position:relative;background:linear-gradient(150deg,#2a1a52,#160f30 60%,#3a1840)">
-              <div style="position:absolute;inset:0;background:repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 12px,transparent 12px 24px)"></div>
-              <div style="position:absolute;top:14px;inset-inline-start:14px;padding:5px 11px;border-radius:100px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);font-size:10.5px;font-weight:700;color:#fff;display:flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:#EF4467;animation:pulse 1.6s infinite"></span>{{ vidLabel }}</div>
-              <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center">
-                <div style="width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(0,0,0,.4);animation:ringpulse 2.4s infinite">
-                  <svg viewBox="0 0 24 24" width="28" height="28" fill="#5B2EB4" style="margin-inline-start:4px"><path d="M6 4.5 19 12 6 19.5Z"/></svg>
-                </div>
-              </div>
-              <div style="position:absolute;bottom:0;inset-inline:0;padding:16px 14px;background:linear-gradient(0deg,rgba(8,5,18,.92),transparent)">
-                <div style="font-size:13.5px;font-weight:700;color:#fff">{{ vidName }}</div>
-                <div style="font-size:11.5px;color:rgba(236,234,246,.6)">{{ vidRole }}</div>
-              </div>
-            </div>
+        <div style="width:min(100%,250px);display:flex;flex-direction:column;align-items:stretch;gap:18px;justify-self:center">
+          <div style="width:100%;aspect-ratio:5/11;border-radius:30px;padding:9px;background:linear-gradient(160deg,rgba(255,255,255,.18),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.18);box-shadow:0 40px 80px -20px rgba(91,40,180,.6)">
+            <video controls playsinline preload="metadata" aria-label="{{ vidVideoLabel }}" style="display:block;width:100%;height:100%;border-radius:23px;background:#0e0a1f;object-fit:contain">
+              <source src="assets/learningo-app-demo.mp4" type="video/mp4">
+            </video>
           </div>
-        </a>
+          <a href="https://www.learnin-go.com" style="display:flex;flex-direction:column;align-items:center;gap:5px;padding:15px 18px;border-radius:14px;background:linear-gradient(120deg,#5B8DEF,#8B5CF6,#D946EF);box-shadow:0 12px 30px -10px rgba(139,92,246,.8);color:#fff;text-align:center;line-height:1.35" style-hover="transform:translateY(-2px);box-shadow:0 18px 36px -10px rgba(139,92,246,.95)">
+            <span style="font-size:15px;font-weight:700">{{ vidCta }}</span>
+            <span style="font-size:12px;font-weight:500;opacity:.9;direction:ltr;unicode-bidi:isolate">{{ webUrl }}</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -517,9 +502,9 @@ class Component extends DCLogic {
       heroTrust:'Loved by students preparing for exams',
       heroShotAlt:'Screenshot of a personal course inside the LearninGo app',
       chipUpload:'Upload PDF', chipQuiz:'Smart quiz', chipCards:'Flashcards',
-      vidKicker:'Real student stories', vidTitle:'Students are already learning differently',
-      vidSub:'See how LearninGo turns messy material into a clear study path.',
-      vidProof:'Thousands of students study smarter', vidLabel:'UGC', vidName:'Maya', vidRole:'Med student',
+      vidKicker:'A quick look at the app', vidTitle:'See for yourself how LearninGo turns messy material into a clear study path.',
+      vidSub:'Watch a short demo of the app in action.', vidVideoLabel:'LearninGo app demo video',
+      vidCta:'Join the revolution and try it free on the Web',
       lingoKicker:'Meet Lingo', lingoTitle:'Your personal guide',
       lingoImgAlt:'Lingo, the AI guide, teaching at a board',
       lingoBody:'Lingo builds a course tailored just for you and gets to know you deeply. It recognizes the way you learn best and refines how your courses are created, especially for you. Have a question about a summary? Got a practice question wrong? Lingo is here to answer, to explain, and to walk with you all the way to success.',
@@ -581,9 +566,9 @@ class Component extends DCLogic {
       heroTrust:'\u05e1\u05d8\u05d5\u05d3\u05e0\u05d8\u05d9\u05dd \u05e9\u05de\u05ea\u05db\u05d5\u05e0\u05e0\u05d9\u05dd \u05dc\u05de\u05d1\u05d7\u05e0\u05d9\u05dd \u05db\u05d1\u05e8 \u05e0\u05d4\u05e0\u05d9\u05dd',
       heroShotAlt:'\u05e6\u05d9\u05dc\u05d5\u05dd \u05de\u05e1\u05da \u05de\u05ea\u05d5\u05da \u05e7\u05d5\u05e8\u05e1 \u05d0\u05d9\u05e9\u05d9 \u05d1\u05d0\u05e4\u05dc\u05d9\u05e7\u05e6\u05d9\u05d9\u05ea LearninGo',
       chipUpload:'\u05d4\u05e2\u05dc\u05d0\u05ea \u05e7\u05d5\u05d1\u05e5', chipQuiz:'\u05e9\u05d0\u05dc\u05d5\u05ea \u05d7\u05db\u05de\u05d5\u05ea', chipCards:'\u05db\u05e8\u05d8\u05d9\u05e1\u05d9\u05d5\u05ea',
-      vidKicker:'\u05e1\u05d9\u05e4\u05d5\u05e8\u05d9\u05dd \u05d0\u05de\u05d9\u05ea\u05d9\u05d9\u05dd', vidTitle:'\u05e1\u05d8\u05d5\u05d3\u05e0\u05d8\u05d9\u05dd \u05db\u05d1\u05e8 \u05dc\u05d5\u05de\u05d3\u05d9\u05dd \u05d0\u05d7\u05e8\u05ea',
-      vidSub:'\u05e6\u05e4\u05d5 \u05d0\u05d9\u05da LearninGo \u05e2\u05d5\u05d6\u05e8\u05ea \u05dc\u05d4\u05e4\u05d5\u05da \u05d7\u05d5\u05de\u05e8 \u05de\u05d1\u05d5\u05dc\u05d2\u05df \u05dc\u05de\u05e1\u05dc\u05d5\u05dc \u05dc\u05de\u05d9\u05d3\u05d4 \u05d1\u05e8\u05d5\u05e8.',
-      vidProof:'\u05d0\u05dc\u05e4\u05d9 \u05e1\u05d8\u05d5\u05d3\u05e0\u05d8\u05d9\u05dd \u05dc\u05d5\u05de\u05d3\u05d9\u05dd \u05d7\u05db\u05dd \u05d9\u05d5\u05ea\u05e8', vidLabel:'\u05d0\u05de\u05d9\u05ea\u05d9', vidName:'\u05de\u05d0\u05d9\u05d4', vidRole:'\u05e1\u05d8\u05d5\u05d3\u05e0\u05d8\u05d9\u05ea \u05dc\u05e8\u05e4\u05d5\u05d0\u05d4',
+      vidKicker:'הדגמה קצרה של האפליקציה', vidTitle:'צפו בעצמכם איך LearninGo עוזרת להפוך חומר מבולגן למסלול למידה ברור.',
+      vidSub:'הצצה קצרה לאפליקציה בפעולה.', vidVideoLabel:'סרטון הדגמה של אפליקציית LearninGo',
+      vidCta:'הצטרפו למהפכה ונסו עכשיו בחינם ב־Web',
       lingoKicker:'\u05d4\u05db\u05d9\u05e8\u05d5 \u05d0\u05ea \u05dc\u05d9\u05e0\u05d2\u05d5', lingoTitle:'\u05d4\u05de\u05d3\u05e8\u05d9\u05da \u05d4\u05d0\u05d9\u05e9\u05d9 \u05e9\u05dc\u05db\u05dd',
       lingoImgAlt:'\u05dc\u05d9\u05e0\u05d2\u05d5, \u05d4\u05de\u05d3\u05e8\u05d9\u05da \u05d4\u05d7\u05db\u05dd, \u05de\u05dc\u05de\u05d3 \u05dc\u05d9\u05d3 \u05dc\u05d5\u05d7',
       lingoBody:'\u05dc\u05d9\u05e0\u05d2\u05d5 \u05d1\u05d5\u05e0\u05d4 \u05e2\u05d1\u05d5\u05e8\u05db\u05dd \u05e7\u05d5\u05e8\u05e1 \u05d1\u05d4\u05ea\u05d0\u05de\u05d4 \u05d0\u05d9\u05e9\u05d9\u05ea \u05d5\u05dc\u05d5\u05de\u05d3 \u05dc\u05d4\u05db\u05d9\u05e8 \u05d0\u05ea\u05db\u05dd \u05dc\u05e2\u05d5\u05de\u05e7. \u05d4\u05d5\u05d0 \u05de\u05d6\u05d4\u05d4 \u05d0\u05ea \u05d4\u05d3\u05e8\u05da \u05e9\u05d1\u05d4 \u05d0\u05ea\u05dd \u05dc\u05d5\u05de\u05d3\u05d9\u05dd \u05d4\u05db\u05d9 \u05d8\u05d5\u05d1 \u05d5\u05de\u05e9\u05e4\u05e8 \u05d0\u05ea \u05d9\u05e6\u05d9\u05e8\u05ea \u05d4\u05e7\u05d5\u05e8\u05e1\u05d9\u05dd \u05d1\u05de\u05d9\u05d5\u05d7\u05d3 \u05e2\u05d1\u05d5\u05e8\u05db\u05dd. \u05d9\u05e9 \u05dc\u05db\u05dd \u05e9\u05d0\u05dc\u05d4 \u05de\u05ea\u05d5\u05da \u05d4\u05e1\u05d9\u05db\u05d5\u05dd? \u05d8\u05e2\u05d9\u05ea\u05dd \u05d1\u05ea\u05e8\u05d2\u05d5\u05dc? \u05dc\u05d9\u05e0\u05d2\u05d5 \u05db\u05d0\u05df \u05db\u05d3\u05d9 \u05dc\u05e2\u05e0\u05d5\u05ea, \u05dc\u05d4\u05e1\u05d1\u05d9\u05e8 \u05d5\u05dc\u05dc\u05d5\u05d5\u05ea \u05d0\u05ea\u05db\u05dd \u05e2\u05d3 \u05dc\u05d4\u05e6\u05dc\u05d7\u05d4.',
